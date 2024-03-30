@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Application Form</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+  @font-face {
+    font-family: 'CustomFont';
+    src: url('path_to_your_font_file.ttf') format('truetype'); /* Update path to your font file */
+  }
+  body {
+    font-family: 'CustomFont', sans-serif; /* Apply custom font to entire document */
+    background-image: linear-gradient( 95.2deg, rgb(221, 237, 247) 26.8%, rgb(162, 219, 246) 64% );
+  }
+  .error {
+    color: red;
+  }
+  .correct-icon {
+    color: green;
+  }
+  .wrong-icon {
+    color: red;
+  }
+  .correct-icon,
+  .wrong-icon{
+    position: relative;
+    top: 6px; /* Adjust the vertical alignment as needed */
+    margin-left: 10px; /*Adjust the spacing between the input field and the icon */
+  }
+  h1 {
+    text-align: center;
+    font-weight: bolder;
+  }
+  label{
+    font-weight: bold;
+  }
+
+  #address {
+    resize: none;
+  }
+  
+</style>
+<script type="text/javascript" src="validation_updated.js"></script>
+</head>
+<body>
+    <div class="container">
+      <h1 class="mt-3">Job Application Form</h1>
+      <h4 class = "mb-3">Contact Information</h4>
+      <form id="jobApplicationForm" onsubmit="return handleSubmit()" class="mt-4" action="success_updated.html">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <div class="input-group">
+            <input type="text" id="name" name="name" class="form-control" oninput="validateName(); toggleSubmitButton()" aria-describedby="nameError" aria-invalid="false">
+            <div class="input-group-append">
+              <i id="nameStatus" class="status"></i>
+            </div>
+          </div>
+            <span id="nameError" class="error" role="alert" aria-live="assertive"></span>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <div class="input-group">
+            <input type="email" id="email" name="email" class="form-control" oninput="validateEmail(); toggleSubmitButton()" aria-describedby="emailError" aria-invalid="false">
+            <div class="input-group-append">
+              <i id="emailStatus" class="status"></i>
+            </div>
+          </div>
+          <span id="emailError" class="error" role="alert" aria-live="assertive"></span>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <div class="input-group">
+            <input type="tel" id="phone" name="phone" class="form-control" oninput="formatPhone(); toggleSubmitButton()" aria-describedby="phoneError" aria-invalid="false">
+            <div class="input-group-append">
+              <i id="phoneStatus" class="status"></i>
+            </div>
+          </div>
+          <span id="phoneError" class="error" role="alert" aria-live="assertive"></span>
+        </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <div class="input-group">
+            <textarea id="address" name="address" class="form-control" oninput="validateAddress(); toggleSubmitButton()" aria-describedby="addressError" aria-invalid="false"></textarea>
+            <div class="input-group-append">
+              <i id="addressStatus" class="status"></i>
+            </div>
+          </div>
+          <span id="addressError" class="error" role="alert" aria-live="assertive"></span>
+        </div>
+        <div class="form-group">
+          <label for="resume">Upload Resume</label>
+          <div class="input-group">
+            <div class="custom-file">
+              <input type="file" id="resume" name="resume" class="custom-file-input" onchange="handleFileUpload()" aria-describedby="resumeError">
+              <label class="custom-file-label" for="resume">Choose file</label>
+            </div>
+            <div class="input-group-append">
+              <button id="cancelFileBtn" class="btn btn-danger d-none" onclick="cancelFileUpload(event)">Remove</button>
+            </div>
+          </div>
+          <span id="resumeError" class="error" role="alert" aria-live="assertive"></span>
+        </div>
+        <button type="submit" id="submitBtn" class="btn btn-primary" disabled>Submit</button>
+      </form>
+    </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
